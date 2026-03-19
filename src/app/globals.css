@@ -1,0 +1,238 @@
+@import 'tailwindcss';
+
+@layer base {
+  :root {
+    /* ─── Shared Structural Shadows ─── */
+    --shadow-raised:
+      0 1px 0 rgba(255, 255, 255, 0.8) inset,
+      0 -1px 0 rgba(0, 0, 0, 0.08) inset, 2px 2px 4px rgba(0, 0, 0, 0.08),
+      4px 4px 8px rgba(0, 0, 0, 0.06), 8px 8px 18px rgba(0, 0, 0, 0.07),
+      0 20px 40px rgba(0, 0, 0, 0.1);
+
+    --shadow-panel:
+      0 1px 0 rgba(255, 255, 255, 0.7) inset,
+      1px 1px 0 rgba(255, 255, 255, 0.5) inset, 3px 3px 6px rgba(0, 0, 0, 0.07),
+      6px 6px 16px rgba(0, 0, 0, 0.07), 14px 14px 36px rgba(0, 0, 0, 0.09),
+      0 35px 55px rgba(0, 0, 0, 0.11);
+
+    --shadow-inset:
+      0 2px 4px rgba(0, 0, 0, 0.18) inset, 0 4px 12px rgba(0, 0, 0, 0.14) inset,
+      0 1px 0 rgba(255, 255, 255, 0.15); /* Lowered opacity for cross-theme compat */
+
+    --shadow-btn:
+      0 1px 0 rgba(255, 255, 255, 0.85) inset,
+      0 -1px 0 rgba(0, 0, 0, 0.12) inset, 0 2px 4px rgba(0, 0, 0, 0.12),
+      0 4px 12px rgba(0, 0, 0, 0.1), 0 8px 20px var(--accent-glow);
+
+    --shadow-btn-pressed:
+      0 1px 3px rgba(0, 0, 0, 0.25) inset, 0 2px 8px rgba(0, 0, 0, 0.2) inset,
+      0 0 0 1px rgba(0, 0, 0, 0.06);
+
+    /* Traffic Lights */
+    --tl-red: #ff5f57;
+    --tl-yellow: #febc2e;
+    --tl-green: #28c840;
+
+    /* Radii */
+    --r-sm: 8px;
+    --r-md: 12px;
+    --r-lg: 16px;
+    --r-xl: 20px;
+
+    /* Base body font */
+    font-family: Arial, Helvetica, sans-serif;
+  }
+
+  /* 
+   * THEMES 
+   */
+
+  [data-theme='monokai'] {
+    --bg-body: #1a1a1a;
+    --bg-noise: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+    --surface-raised: linear-gradient(145deg, #323232 0%, #202020 100%);
+    --surface-flat: #2a2a2a;
+    --surface-inset: #151515;
+    --surface-titlebar: linear-gradient(180deg, #383838 0%, #262626 100%);
+    --surface-editor: #272822; /* Monokai base */
+    --surface-glass: rgba(255, 255, 255, 0.05);
+
+    --text-primary: #f8f8f2;
+    --text-secondary: #a0a0a0;
+    --text-muted: #75715e;
+
+    --accent: #f92672;
+    --accent-hover: #fa4f8c;
+    --accent-glow: rgba(249, 38, 114, 0.35);
+    --accent-pressed: #d31e5e;
+
+    --border-light: rgba(255, 255, 255, 0.08);
+    --border-dark: rgba(0, 0, 0, 0.6);
+    --border-editor: rgba(0, 0, 0, 0.8);
+
+    /* Dark theme shadow overrides */
+    --shadow-raised:
+      0 1px 0 rgba(255, 255, 255, 0.07) inset,
+      0 -1px 0 rgba(0, 0, 0, 0.35) inset, 2px 2px 4px rgba(0, 0, 0, 0.3),
+      4px 4px 10px rgba(0, 0, 0, 0.25), 10px 10px 25px rgba(0, 0, 0, 0.3),
+      0 25px 50px rgba(0, 0, 0, 0.35);
+
+    --shadow-panel:
+      0 1px 0 rgba(255, 255, 255, 0.07) inset,
+      1px 1px 0 rgba(255, 255, 255, 0.04) inset, 3px 3px 8px rgba(0, 0, 0, 0.4),
+      8px 8px 20px rgba(0, 0, 0, 0.35), 18px 18px 45px rgba(0, 0, 0, 0.4),
+      0 40px 60px rgba(0, 0, 0, 0.5);
+
+    --shadow-inset:
+      0 2px 6px rgba(0, 0, 0, 0.55) inset, 0 5px 16px rgba(0, 0, 0, 0.45) inset,
+      0 1px 0 rgba(255, 255, 255, 0.05);
+
+    --shadow-btn:
+      0 1px 0 rgba(255, 255, 255, 0.12) inset,
+      0 -1px 0 rgba(0, 0, 0, 0.4) inset, 0 2px 6px rgba(0, 0, 0, 0.4),
+      0 6px 16px rgba(0, 0, 0, 0.3), 0 10px 28px var(--accent-glow);
+
+    --shadow-btn-pressed:
+      0 2px 5px rgba(0, 0, 0, 0.6) inset, 0 3px 10px rgba(0, 0, 0, 0.5) inset,
+      0 0 0 1px rgba(0, 0, 0, 0.25);
+  }
+
+  [data-theme='dracula'] {
+    --bg-body: #1e1f29;
+    --bg-noise: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+    --surface-raised: linear-gradient(145deg, #303342 0%, #21222c 100%);
+    --surface-flat: #282a36;
+    --surface-inset: #191a21;
+    --surface-titlebar: linear-gradient(180deg, #373a4b 0%, #282a36 100%);
+    --surface-editor: #282a36;
+    --surface-glass: rgba(255, 255, 255, 0.05);
+
+    --text-primary: #f8f8f2;
+    --text-secondary: #bfbfbf;
+    --text-muted: #6272a4;
+
+    --accent: #bd93f9;
+    --accent-hover: #d2afff;
+    --accent-glow: rgba(189, 147, 249, 0.35);
+    --accent-pressed: #a375e8;
+
+    --border-light: rgba(255, 255, 255, 0.08);
+    --border-dark: rgba(0, 0, 0, 0.5);
+    --border-editor: rgba(0, 0, 0, 0.7);
+
+    /* Inherits dark shadows from Monokai block conceptually, 
+       but we duplicate the overrides here for standalone theme definitions */
+    --shadow-raised:
+      0 1px 0 rgba(255, 255, 255, 0.07) inset,
+      0 -1px 0 rgba(0, 0, 0, 0.35) inset, 2px 2px 4px rgba(0, 0, 0, 0.3),
+      4px 4px 10px rgba(0, 0, 0, 0.25), 10px 10px 25px rgba(0, 0, 0, 0.3),
+      0 25px 50px rgba(0, 0, 0, 0.4);
+    --shadow-panel:
+      0 1px 0 rgba(255, 255, 255, 0.07) inset,
+      1px 1px 0 rgba(255, 255, 255, 0.04) inset, 3px 3px 8px rgba(0, 0, 0, 0.4),
+      8px 8px 20px rgba(0, 0, 0, 0.35), 18px 18px 45px rgba(0, 0, 0, 0.4),
+      0 40px 60px rgba(0, 0, 0, 0.5);
+    --shadow-inset:
+      0 2px 6px rgba(0, 0, 0, 0.45) inset, 0 5px 16px rgba(0, 0, 0, 0.35) inset,
+      0 1px 0 rgba(255, 255, 255, 0.05);
+    --shadow-btn:
+      0 1px 0 rgba(255, 255, 255, 0.12) inset,
+      0 -1px 0 rgba(0, 0, 0, 0.4) inset, 0 2px 6px rgba(0, 0, 0, 0.4),
+      0 6px 16px rgba(0, 0, 0, 0.3), 0 10px 28px var(--accent-glow);
+    --shadow-btn-pressed:
+      0 2px 5px rgba(0, 0, 0, 0.6) inset, 0 3px 10px rgba(0, 0, 0, 0.5) inset,
+      0 0 0 1px rgba(0, 0, 0, 0.25);
+  }
+
+  [data-theme='github-dark'] {
+    --bg-body: #0d1117;
+    --bg-noise: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");
+    --surface-raised: linear-gradient(145deg, #21262d 0%, #161b22 100%);
+    --surface-flat: #161b22;
+    --surface-inset: #010409;
+    --surface-titlebar: linear-gradient(180deg, #282e36 0%, #161b22 100%);
+    --surface-editor: #0d1117;
+    --surface-glass: rgba(255, 255, 255, 0.05);
+
+    --text-primary: #c9d1d9;
+    --text-secondary: #8b949e;
+    --text-muted: #484f58;
+
+    --accent: #58a6ff;
+    --accent-hover: #79c0ff;
+    --accent-glow: rgba(88, 166, 255, 0.35);
+    --accent-pressed: #3182ce;
+
+    --border-light: rgba(255, 255, 255, 0.1);
+    --border-dark: rgba(0, 0, 0, 0.8);
+    --border-editor: rgba(0, 0, 0, 0.9);
+
+    --shadow-raised:
+      0 1px 0 rgba(255, 255, 255, 0.05) inset,
+      0 -1px 0 rgba(0, 0, 0, 0.4) inset, 0 8px 24px rgba(0, 0, 0, 0.4);
+    --shadow-panel:
+      0 1px 0 rgba(255, 255, 255, 0.05) inset, 0 12px 36px rgba(0, 0, 0, 0.6);
+    --shadow-inset:
+      0 4px 12px rgba(0, 0, 0, 0.6) inset, 0 0 0 1px rgba(0, 0, 0, 0.8) inset;
+    --shadow-btn:
+      0 1px 0 rgba(255, 255, 255, 0.1) inset, 0 -1px 0 rgba(0, 0, 0, 0.4) inset,
+      0 4px 12px var(--accent-glow);
+    --shadow-btn-pressed: 0 2px 5px rgba(0, 0, 0, 0.6) inset;
+  }
+
+  [data-theme='nord'] {
+    --bg-body: #2e3440;
+    --bg-noise: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+    --surface-raised: linear-gradient(145deg, #3b4252 0%, #2e3440 100%);
+    --surface-flat: #3b4252;
+    --surface-inset: #2e3440;
+    --surface-titlebar: linear-gradient(180deg, #434c5e 0%, #3b4252 100%);
+    --surface-editor: #2e3440;
+    --surface-glass: rgba(255, 255, 255, 0.05);
+
+    --text-primary: #eceff4;
+    --text-secondary: #e5e9f0;
+    --text-muted: #d8dee9;
+    --text-ui-muted: #aebce0;
+
+    --accent: #81a1c1;
+    --accent-hover: #88c0d0;
+    --accent-glow: rgba(129, 161, 193, 0.35);
+    --accent-pressed: #5e81ac;
+
+    --border-light: rgba(255, 255, 255, 0.08);
+    --border-dark: rgba(0, 0, 0, 0.3);
+    --border-editor: rgba(0, 0, 0, 0.5);
+
+    /* Dark shadows */
+    --shadow-raised:
+      0 1px 0 rgba(255, 255, 255, 0.07) inset,
+      0 -1px 0 rgba(0, 0, 0, 0.3) inset, 2px 2px 4px rgba(0, 0, 0, 0.2),
+      8px 8px 18px rgba(0, 0, 0, 0.15), 0 20px 40px rgba(0, 0, 0, 0.2);
+
+    --shadow-panel:
+      0 1px 0 rgba(255, 255, 255, 0.07) inset,
+      1px 1px 0 rgba(255, 255, 255, 0.04) inset, 3px 3px 6px rgba(0, 0, 0, 0.2),
+      14px 14px 36px rgba(0, 0, 0, 0.3), 0 35px 55px rgba(0, 0, 0, 0.3);
+
+    --shadow-inset:
+      0 2px 4px rgba(0, 0, 0, 0.4) inset, 0 4px 12px rgba(0, 0, 0, 0.3) inset,
+      0 1px 0 rgba(255, 255, 255, 0.05);
+
+    --shadow-btn:
+      0 1px 0 rgba(255, 255, 255, 0.1) inset, 0 -1px 0 rgba(0, 0, 0, 0.4) inset,
+      0 4px 12px rgba(129, 161, 193, 0.2);
+
+    --shadow-btn-pressed:
+      0 2px 5px rgba(0, 0, 0, 0.4) inset, 0 0 0 1px rgba(0, 0, 0, 0.2);
+  }
+
+  body {
+    background-color: var(--bg-body);
+    background-image: var(--bg-noise);
+    color: var(--text-primary);
+    transition:
+      background-color 0.3s ease,
+      color 0.3s ease;
+  }
+}
