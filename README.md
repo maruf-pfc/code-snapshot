@@ -1,108 +1,72 @@
-# Code Snapshot
+# Code Snapshot 📷
 
-**Code Snapshot** is a lightweight tool that converts pasted code into **beautiful, social-media-ready PNG images**.
-It provides a **clean browser interface** utilizing a split side-by-side view highlighting code with Pygments, and generates natively stylized PNG snapshots mimicking a sleek macOS window.
+Code Snapshot is a premium, beautifully-designed developer tool that instantly converts your code snippets into stunning, high-resolution PNG images.
 
-Perfect for sharing code snippets on:
-- LinkedIn
-- Twitter / X
-- Dev communities
-- Blogs
-- Tutorials
-- Documentation
+Built with a tactile, skeuomorphic design system, it features multi-theme support, smart file name detection, and a fluid drag-and-drop experience. Instead of basic flat design, Code Snapshot provides real depth, inset shadows, and a macOS-inspired window aesthetic.
 
 ---
 
-## Features
+## ✨ Features
 
-- VS Code–style **interactive Monaco code editor**
-- Side-by-Side Live layout for instant feedback
-- **Pygments Syntax Highlighting** with Monokai aesthetic
-- Custom **JetBrains Mono** typography support
-- **Mac terminal-styled snapshots** with drop shadows and curved borders
-- Fast backend powered by FastAPI and Pillow
-
----
-
-## Tech Stack
-
-Backend
-- FastAPI
-- Pillow (Image Generation Engine)
-- Pygments (Lexical Syntax Highlighting)
-
-Frontend
-- HTML/CSS (Modern Flexbox + Glassmorphism Theme)
-- Vanilla JavaScript
-- Monaco Editor
+- **Beautiful Skeuomorphic UI** — Realistic depth, layered shadows, and tactile buttons.
+- **Multi-Theme Engine** — Switch between Monokai, Dracula, GitHub Dark, and Nord instantly.
+- **High-Fidelity Syntax Highlighting** — Powered by `shiki` to perfectly match VS Code textmate grammars.
+- **Smart Project Naming** — Set a project name, and watch the file tab and exported PNG name update automatically.
+- **Drag & Drop** — Drop any source file onto the code well, and it auto-detects the language.
+- **100% Client-Side Export** — Lightning fast, high-res (2x) PNG generation in the browser using `html-to-image`. No backend required.
 
 ---
 
-## Installation
+## 🛠 Tech Stack
 
-Clone the repository
-```bash
-git clone https://github.com/yourusername/code-snapshot.git
-cd code-snapshot
-```
-
-Install dependencies into a virtual environment
-```bash
-python -m venv .venv
-source .venv/bin/activate
-pip install -r requirements.txt
-```
+- **Next.js 15** (App Router)
+- **React** & **TypeScript**
+- **TailwindCSS v4** (Custom CSS Design tokens)
+- **Monaco Editor** (`@monaco-editor/react`)
+- **Shiki** (Syntax Highlighting)
 
 ---
 
-## Running the App
+## 🚀 Quick Start (Local Dev)
 
-Start the development server:
-```bash
-uvicorn app:app --reload
-```
-
-Open your browser to:
-`http://localhost:8000`
-
-Ensure you select your target language from the dropdown before generating the snapshot to get perfect syntax highlighting!
-
----
-
-## Project Structure
-
-```txt
-code-snapshot
-│
-├── app.py                 # FastAPI application and routes
-├── generator.py           # Custom Pillow image generation & Pygments parsing
-├── requirements.txt       # Project dependencies
-├── README.md              # Documentation
-├── JetBrainsMono.ttf      # Developer Font Engine
-│
-├── templates
-│   └── index.html         # Web UI (Side-by-Side Layout)
-│
-├── static
-│   └── style.css          # Modern UI Theme Styles
-│
-└── outputs                # Automatically stores generated images
-```
+1. Clone the repository
+2. Install dependencies:
+   \`\`\`bash
+   pnpm install
+   \`\`\`
+3. Start the development server:
+   \`\`\`bash
+   pnpm dev
+   \`\`\`
+4. Open [http://localhost:3000](http://localhost:3000)
 
 ---
 
-## Output Example
-The generated image mimics a high-resolution macOS application window containing your highlighted code snippet, right-aligned line numbers, and an immersive drop shadow. 
+## 🐳 Docker Deployment
+
+Code Snapshot includes a multi-stage Dockerfile and Docker Compose setup for optimized, standalone production deployment.
+
+\`\`\`bash
+
+# Build and run with Docker Compose
+
+docker compose up --build -d
+
+# Visit: http://localhost:3000
+
+\`\`\`
 
 ---
 
-## License
+## 🎨 Theming System
 
-Apache License 2.0
+The app relies on a dynamic global CSS variable system (`globals.css`). It modifies root vars based on the `[data-theme="..."]` attribute:
+
+- \`--bg-body\`: Main ambient background
+- \`--surface-raised\`: Gradients for floating panels
+- \`--shadow-inset\`: For the editor "screen" depth
+- \`--accent\`: Vibrant glow effects for the active theme
 
 ---
 
-## Author
-
-**Md. Maruf Sarker**
-Software Engineering Enthusiast | Competitive Programmer | Content Creator for Tech Learners
+_Designed & built for developers who care about aesthetics._
